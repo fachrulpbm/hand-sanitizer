@@ -38,16 +38,6 @@ CREATE TABLE `transaksi` (
 -- Dumping data for table `transaksi`
 --
 
-INSERT INTO `transaksi` (`id`, `jml`) VALUES
-(8, 3),
-(9, 4),
-(10, 2),
-(11, 1),
-(12, 5),
-(13, 3),
-(14, 5),
-(15, 4),
-(16, 2);
 
 --
 -- Indexes for dumped tables
