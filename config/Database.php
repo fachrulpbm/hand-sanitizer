@@ -1,8 +1,8 @@
-<?php    
+<?php
 
-    class Database {        
+    class Database {
 
-        private static $conn;        
+        private static $conn;
 
         static function getConnection(){
             if (self::$conn == null) {
@@ -15,7 +15,7 @@
                 }
             }
         }
-        
+
     }
 
 ?>

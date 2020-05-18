@@ -1,14 +1,12 @@
-<?php    
-    require_once './model/Transaksi.php';
+<?php
+    require ("../model/Transaksi.php");
 
     class TransaksiController{
-        
-        private $tr;        
-        
-        function __construct(){
-            // if(self::$tr == null){
-                $this->tr = new Transaksi();
-            // }            
+
+        private static $tr;
+
+        function __construct(){            
+                self::$tr = new Transaksi();            
         }
 
         function insert(){
@@ -20,47 +18,32 @@
             } elseif ($jml < 0) {
                 return "<p id='msg'>Periksa kembali input Anda! Tidak boleh minus!</p>";
             } else {
-                return $this->tr->beli($jml);
-            }                                    
+                return self::$tr->beli($jml);
+            }            
+
         }
 
         function showAll(){
 
-            $row = $this->tr->tampilkanSemuaTransaksi()->fetchAll(PDO::FETCH_ASSOC);
-            //echo var_dump($row);
+            $row = self::$tr->tampilkanSemuaTransaksi()->fetchAll(PDO::FETCH_ASSOC);
 
-            foreach ($row as $key) {
+            // echo var_dump($row);
+
+            if( count($row) == 0 ){
                 echo "<tr align='center'>";
-                echo "<td>" . $key['id'] . "</td>";
-                echo "<td>" . $key['jml'] . "</td>";
-                echo "</tr>";                  
+                echo "<td colspan=3>Tidak ada data</td>";                
+                echo "</tr>";
+            }else{
+                foreach ($row as $key) {
+                    echo "<tr align='center'>";
+                    echo "<td>" . $key['id'] . "</td>";
+                    echo "<td>" . $key['jml'] . "</td>";
+                    echo "</tr>";
+                }
             }
-            
 
-            // while( $row = self::$tr->tampilkanSemuaTransaksi()->fetchAll(PDO::FETCH_ASSOC) ){
-            //     echo "<tr>";
-            //     echo "<td>" . $row[0] . "</td>";
-            //     echo "<td>" . $row[1] . "</td>";
-            //     echo "</tr>";
-            // }
-            // $row = self::$tr->tampilkanSemuaTransaksi()->fetch(PDO::FETCH_ASSOC);
-            // //echo var_dump($row);
-            // if($row==0){
-            //     echo "<td colspan=3 align=center>Data kosong</td>";
-            // }else{    
-            //     // return var_dump($row);
-            //     while($row){
-            //         echo "<tr>";
-            //         echo "<td>" . $row['id'] . "</td>";
-            //         echo "<td>" . $row['jml'] . "</td>";
-            //         echo "</tr>";
-            //         // $table = "<tr>";
-            //         // $table .= "<td>" . $row['id'] . "</td>";
-            //         // $table .= "<td>" . $row['jml'] . "</td>";
-            //         // $table .= "</>";
-            //         // return $table;
-            //     }                                
-            // }            
+            
+            
         }
 
     }

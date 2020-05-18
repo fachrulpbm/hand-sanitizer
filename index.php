@@ -12,10 +12,9 @@
     <h2>Transaksi</h2>
     <p>Pembelian hand-sanitizer</p>
 
-    <?php
-        require_once 'view/input_transaksi.php';
-        require_once 'view/show_transaksi.php';
-    ?>    
+  
+    <a href='view/input_transaksi.php'>Input</a> |
+    <a href='view/show_transaksi.php'>Lihat</a>
 
 </body>
 
